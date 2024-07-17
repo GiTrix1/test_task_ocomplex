@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify, session
 import requests
 
 app = Flask(__name__, template_folder='.')
+app.secret_key = 'SuperKey123'  # Секретный ключ для сессий, использую для хранения истории поиска
 
 # Список для хранения истории поиска
 search_history = []
