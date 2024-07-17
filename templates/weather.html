@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Погода в {{ city }}</title>
+</head>
+<body>
+    <h1>Погода в {{ city }}</h1>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% else %}
+        Погода по времени от 0:00 до 23:00:
+        {% for data in weather_forecast %}
+            <p>{{ data }}</p>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

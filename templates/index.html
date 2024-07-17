@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Погода</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#city").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/autocomplete",
+                        data: { term: request.term },
+                        success: function (data) {
+                            response(data);
+                        }
+                    });
+                },
+                minLength: 2
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Введите город для прогноза погоды</h1>
+    <form method="POST" action="/weather">
+        <input type="text" id="city" name="city" placeholder="Введите название города" required>
+        <button type="submit">Получить погоду</button>
+    </form>
+</body>
+</html>
